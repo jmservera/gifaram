@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  TELEGRAM_DISABLE_NOTIFICATION: "True" #default=True, set it to false if you want add notification to the messages
-  FFMPEG_FPS: "10" #default=10
-  FFMPEG_WIDTH: "320" # default=320, height is calculated from the width
-  FFMEG_NOAUDIO: "True" #default=True, set it to false if you want to send audio
+  TELEGRAM_DISABLE_NOTIFICATION: 'True' #default=True, set it to false if you want add notification to the messages
+  FFMPEG_FPS: '10' #default=10
+  FFMPEG_WIDTH: '320' # default=320, height is calculated from the width
+  FFMEG_NOAUDIO: 'True' #default=True, set it to false if you want to send audio
