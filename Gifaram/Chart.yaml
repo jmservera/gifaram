@@ -1,7 +1,7 @@
 apiVersion: v2
 name: gifaram
 description: A Helm chart to install the gifaram app.
-icon: https://raw.githubusercontent.com/jmservera/gifaram/main/img/gifaram.jpeg
+icon: https://raw.githubusercontent.com/jmservera/gifaram/main/img/gifaram.svg
 
 # A chart can be either an 'application' or a 'library' chart.
 #
