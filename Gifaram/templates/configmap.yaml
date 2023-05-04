@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-{{ .Values.image.name }}-configmap
+  name: {{ .Release.Name }}-{{ .Values.global.azure.images.gif2t.name }}-configmap
 data:
   TELEGRAM_DISABLE_NOTIFICATION: {{ quote .Values.config.TELEGRAM_DISABLE_NOTIFICATION }} #default=True, set it to false if you want add notification to the messages
   FFMPEG_FPS: {{ quote .Values.config.FFMPEG_FPS }} #default=10

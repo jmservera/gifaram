@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gif2t
+  name: gif2t
+spec:
+  replicas: 1 # TODO: use keda for autoscale
+  selector:
+    matchLabels:
+      app: gif2t
+  template:
+    metadata:
+      labels:
+        app: gif2t
+        azure-extensions-usage-release-identifier: {{ .Release.Name }}
+    spec:
+      containers:
+      - image: {{ .Values.global.azure.images.gif2t.registry }}/{{ .Values.global.azure.images.gif2t.image }}@{{ .Values.global.azure.images.gif2t.digest }}
+        name: {{ .Release.Name }}-{{ .Values.global.azure.images.gif2t.name }}
+        imagePullPolicy: {{ .Values.global.azure.images.gif2t.pullPolicy }}
+        env:
+        - name: AzureFunctionsJobHost__functions__0
+          value: FromBlob
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-{{ .Values.global.azure.images.gif2t.name }}-configmap
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+        startupProbe:
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 240
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP

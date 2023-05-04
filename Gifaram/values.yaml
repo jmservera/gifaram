@@ -2,6 +2,16 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  azure:
+    images:
+      gif2t:
+        digest: sha256:90de6ee872db6545d9ae6a59a99e7a061c8a7c61a28008a879a0bdea16f1a629
+        image: azure-blob-to-telegram
+        registry: jmaksdemos.azurecr.io
+        name: gif2t
+        pullPolicy: Always
+
 config:
   AzureWebJobsStorage: ""
   CameraDropFilesStorage: ""
@@ -13,18 +23,6 @@ config:
   TELEGRAM_CHAT_ID: ""
 
 replicaCount: 1
-
-image:
-  repository: jmaksdemos.azurecr.io/azure-blob-to-telegram
-  version: latest
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
-  name: gif2t
-
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
