@@ -27,15 +27,6 @@
                 "description": "The location of AKS resource."
             }
         },
-        "app-title": {
-            "type": "String"
-        },
-        "app-value1": {
-            "type": "String"
-        },
-        "app-value2": {
-            "type": "String"
-        },
         "vmSize": {
             "type": "String",
             "defaultValue": "Standard_DS2_v2",
@@ -125,6 +116,56 @@
             "metadata": {
                 "description": "Boolean flag to turn on and off secret store CSI driver."
             }
+        },
+        "storageURL": {
+            "type": "String",
+            "defaultValue": "",
+            "minLength": 10,
+            "metadata": {
+                "description": "The URL of the storage account with the credentials."
+            }
+        },
+        "TELEGRAM_DISABLE_NOTIFICATION": {
+            "defaultValue": false,
+            "type": "Bool",
+            "metadata": {
+                "description": "Boolean flag to turn on and off telegram notifications."
+            }
+        },
+        "FFMPEG_FPS": {
+            "defaultValue": 10,
+            "type": "int",
+            "metadata": {
+                "description": "Number of frames per second to capture."
+            }
+        },
+        "FFMPEG_WIDTH": {
+            "defaultValue": 320,
+            "type": "int",
+            "metadata": {
+                "description": "Width of the video to capture."
+            }
+        },
+        "FFMPEG_NOAUDIO": {
+            "defaultValue": true,
+            "type": "Bool",
+            "metadata": {
+                "description": "Boolean flag to turn audio on and off."
+            }
+        },
+        "TELEGRAM_API_KEY": {
+            "type": "String",
+            "defaultValue": "",
+            "metadata": {
+                "description": "API key for telegram bot."
+            }
+        },
+        "TELEGRAM_CHAT_ID": {
+            "type": "String",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Chat ID for telegram bot."
+            }
         }
     },
     "variables": {
@@ -137,7 +178,7 @@
     "resources": [
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "condition" : "[parameters('createNewCluster')]",
+            "condition": "[parameters('createNewCluster')]",
             "apiVersion": "2022-11-01",
             "name": "[parameters('clusterResourceName')]",
             "location": "[parameters('location')]",
@@ -192,27 +233,24 @@
                     }
                 }
             }
-        },  
+        },
         {
             "type": "Microsoft.KubernetesConfiguration/extensions",
             "apiVersion": "2022-11-01",
-            "name": "[parameters('extensionResourceName')]",          
+            "name": "[parameters('extensionResourceName')]",
             "properties": {
                 "extensionType": "[variables('clusterExtensionTypeName')]",
                 "autoUpgradeMinorVersion": true,
                 "releaseTrain": "[variables('releaseTrain')]",
                 "configurationSettings": {
-                    "AzureWebJobsStorage": "",
-                    "CameraDropFilesStorage": "",
-                    "TELEGRAM_DISABLE_NOTIFICATION":"",
-                    "FFMPEG_FPS": "",
-                    "FFMPEG_WIDTH": "",
-                    "FFMPEG_NOAUDIO": "",
-                    "TELEGRAM_API_KEY": "",
-                    "TELEGRAM_CHAT_ID": "",
-                    "title": "[parameters('app-title')]",
-                    "value1": "[parameters('app-value1')]",
-                    "value2": "[parameters('app-value2')]"
+                    "AzureWebJobsStorage": "[parameters('storageURL')]",
+                    "CameraDropFilesStorage": "[parameters('storageURL')]",
+                    "TELEGRAM_DISABLE_NOTIFICATION": "[parameters('TELEGRAM_DISABLE_NOTIFICATION')]",
+                    "FFMPEG_FPS": "[parameters('FFMPEG_FPS')]",
+                    "FFMPEG_WIDTH": "[parameters('FFMPEG_WIDTH')]",
+                    "FFMPEG_NOAUDIO": "[parameters('FFMPEG_NOAUDIO')]",
+                    "TELEGRAM_API_KEY": "[parameters('TELEGRAM_API_KEY')]",
+                    "TELEGRAM_CHAT_ID": "[parameters('TELEGRAM_CHAT_ID')]"
                 },
                 "configurationProtectedSettings": {
 

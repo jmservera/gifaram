@@ -7,7 +7,7 @@ data:
   FFMPEG_FPS: {{ quote .Values.config.FFMPEG_FPS }} #default=10
   FFMPEG_WIDTH: {{ quote .Values.config.FFMPEG_WIDTH }} # default=320, height is calculated from the width
   FFMEG_NOAUDIO: {{ quote .Values.config.FFMPEG_NOAUDIO }} #default=True, set it to false if you want to send audio
-  AzureWebJobsStorage: {{ required "config.AzureWebJobsStorage is required" .Values.config.AzureWebJobsStorage }}
-  CameraDropFilesStorage: {{ required "config.CameraDropFilesStorage is required" .Values.config.CameraDropFilesStorage }}
-  TELEGRAM_API_KEY: {{ .Values.config.TELEGRAM_API_KEY | required "config.TELEGRAM_API_KEY is required" | quote }}
-  TELEGRAM_CHAT_ID: {{ .Values.config.TELEGRAM_CHAT_ID | required "config.TELEGRAM_CHAT_ID is required" | quote }}
+  AzureWebJobsStorage: {{ .Values.config.AzureWebJobsStorage }}
+  CameraDropFilesStorage: {{  .Values.config.CameraDropFilesStorage }}
+  TELEGRAM_API_KEY: {{ .Values.config.TELEGRAM_API_KEY | quote }}
+  TELEGRAM_CHAT_ID: {{ .Values.config.TELEGRAM_CHAT_ID | quote }}

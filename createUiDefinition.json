@@ -240,9 +240,12 @@
                     {
 						"name": "TELEGRAM_API_KEY",
 						"type": "Microsoft.Common.TextBox",
-						"label": "API Key for telegram bot",
+						"label": "API Key for Telegram",
+						"toolTip": "This will be used to send messages to your telegram bot",
 						"defaultValue": "",
 						"constraints": {
+							"regex": "^.{1,}$",
+							"validationMessage": "Please enter a valid API Key",
 							"required": true
 						},
 						"visible": true
@@ -250,9 +253,12 @@
                     {
 						"name": "TELEGRAM_CHAT_ID",
 						"type": "Microsoft.Common.TextBox",
-						"label": "Chat ID to send the messages to",
+						"label": "Chat ID for Telegram",
+						"toolTip": "This will be used to send messages to your telegram bot",
 						"defaultValue": "",
 						"constraints": {
+							"regex": "^-?[0-9]{1,}$",
+							"validationMessage": "Please enter a valid Chat ID",
 							"required": true
 						},
 						"visible": true
@@ -309,9 +315,6 @@
 			"FFMPEG_NOAUDIO": "[steps('extensionDetails').FFMPEG_NOAUDIO]",
 			"TELEGRAM_API_KEY": "[steps('extensionDetails').TELEGRAM_API_KEY]",
 			"TELEGRAM_CHAT_ID": "[steps('extensionDetails').TELEGRAM_CHAT_ID]",
-			"storageRg":"[last(take(split(steps('storageDetails').StorageAccountSelector,'/'),5))]",
-			"storageAcc":"[last(take(split(steps('storageDetails').StorageAccountSelector,'/'),9))]",
-			"storageKey":"[first(steps('storageDetails').StorageKeys.keys).value]",
 			"storageURL":"[concat('DefaultEndpointsProtocol=https;AccountName=',last(take(split(steps('storageDetails').StorageAccountSelector,'/'),9)),';AccountKey=',first(steps('storageDetails').StorageKeys.keys).value,';EndpointSuffix=core.windows.net')]"
 		}
 	}

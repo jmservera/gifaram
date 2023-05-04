@@ -24,7 +24,3 @@ version: 0.1.5
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
 
-dependencies:
-  - name: keda
-    version: 2.10.2
-    repository: https://kedacore.github.io/charts
