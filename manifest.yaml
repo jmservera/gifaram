@@ -1,0 +1,11 @@
+applicationName: org.servezas.gifaram
+publisher: "jmservera"
+description: "An example package for the marketplace CNAB structure with existing or new cluster."
+version: 0.9.1 #Must be in the format of #.#.#
+helmChart: "./gifaram"
+clusterArmTemplate: "./mainTemplate.json"
+uiDefinition: "./createUiDefinition.json"
+registryServer: "jmaksdemos.azurecr.io"
+extensionRegistrationParameters:
+  defaultScope: "cluster" # cluster or namespace 
+  namespace: "gifaram" # Specify the namespace the extension will install into. This property is required when defaultScope field value is chosen as 'cluster'
