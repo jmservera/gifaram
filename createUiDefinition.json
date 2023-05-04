@@ -170,15 +170,28 @@
 						},
 						"visible": true
 					},
-					{
-						"name": "TELEGRAM_DISABLE_NOTIFICATION",
-						"type": "Microsoft.Common.CheckBox",
-						"label": "Disable Telegram Notification",
-						"toolTip": "This will disable the Telegram Notification",
-						"constraints": {
-							"required": false
-						}
-					},
+
+                    {
+                        "name": "TELEGRAM_DISABLE_NOTIFICATION",
+                        "type": "Microsoft.Common.OptionsGroup",
+                        "label": "Disable Telegram Notification?",
+                        "defaultValue": "No",
+                        "toolTip": "Disable Telegram Notification",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Yes",
+                                    "value": true
+                                },
+                                {
+                                    "label": "No",
+                                    "value": false
+                                }
+                            ],
+                            "required": true
+                        },
+                        "visible": true
+                    },
 					{
 						"name": "FFMPEG_FPS",
 						"type": "Microsoft.Common.Slider",
@@ -206,33 +219,24 @@
 					},
                     {
 						"name": "FFMPEG_NOAUDIO",
-						"type": "Microsoft.Common.CheckBox",
+						"type": "Microsoft.Common.OptionsGroup",
 						"label": "Disable audio",
+                        "defaultValue": "Yes",
 						"toolTip": "This will disable the audio",
 						"constraints": {
-							"required": false
+							"allowedValues": [
+                                {
+                                    "label": "Yes",
+                                    "value": true
+                                },
+                                {
+                                    "label": "No",
+                                    "value": false
+                                }
+                            ],
+                            "required": true
 						}
-					},
-                    {
-                        "name": "AzureWebJobsStorage",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Storage account uri for the function",
-                        "defaultValue": "",
-                        "constraints": {
-							"required": true
-						},
-                        "visible": true
-                    },
-                    {
-                        "name": "CameraDropFilesStorage",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Storage account uri for camera drop files",
-                        "defaultValue": "",
-                        "constraints": {
-							"required": true
-						},
-                        "visible": true
-                    },
+					},                    
                     {
 						"name": "TELEGRAM_API_KEY",
 						"type": "Microsoft.Common.TextBox",
@@ -251,7 +255,7 @@
 						"constraints": {
 							"required": true
 						},
-						"visible": false
+						"visible": true
 					}
 				]
 			},
