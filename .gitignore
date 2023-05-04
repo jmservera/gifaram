@@ -36,5 +36,6 @@ Session.vim
 *.tgz
 
 .history
+.cnab
 
 values.local.yml
